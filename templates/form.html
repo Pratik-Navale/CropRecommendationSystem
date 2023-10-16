@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -90,13 +90,13 @@
     </header>
 
     <!-- Form -->
-    <div class="pt-10">
+    <div class="py-10">
       <div class="max-w-4xl p-6 mx-auto bg-white rounded-md shadow-lg">
         <h2 class="text-lg font-semibold text-gray-700 capitalize">
           Enter the valid details
         </h2>
 
-        <form>
+        <form id="form" action="/predict" method="POST">
           <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-3">
             <div>
               <label class="text-gray-700" for="N">Nitrogen</label>
@@ -180,24 +180,24 @@
         </form>
       </div>
     </div>
-
+      {% if pred %}
     <!-- Card -->
-    <div class="py-4">
+    <div class="py-4" id="result">
       <div
         class="max-w-xs overflow-hidden bg-white rounded-lg shadow-lg mx-auto"
       >
         <div class="px-4 py-2">
-          <h1 class="text-xl font-bold text-gray-800 uppercase">Wheat</h1>
+          <h1 class="text-xl font-bold text-gray-800 uppercase" id="crop-output">{{ pred }}</h1>
         </div>
 
-        <img
+        <img id="img"
           class="object-cover w-full h-48 mt-2"
-          src="https://images.unsplash.com/photo-1437252611977-07f74518abd7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80"
+          src={{path}}
           alt="Wheat"
         />
       </div>
     </div>
-
+      {% endif %}
     <!-- Footer -->
     <footer class="bg-white">
       <div
@@ -264,5 +264,7 @@
         </div>
       </div>
     </footer>
+    <script src="{{ url_for('static', filename='javascript/send.js') }}"></script>
+    <script src="{{ url_for('static', filename='javascript/index.js') }}"></script>
   </body>
 </html>

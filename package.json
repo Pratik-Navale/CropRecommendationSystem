@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Welcome to your shiny new Codespace running Flask! We've got everything fired up and running for you to explore Flask.",
   "main": "index.js",
-  "type": "module",
+  "type":"module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tailwindcss -i ./static/css/input.css -o ./static/css/output.css --watch"

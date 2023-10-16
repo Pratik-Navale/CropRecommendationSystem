@@ -1,6 +1,27 @@
-from flask import Flask, render_template
-
+from flask import Flask, render_template,request, jsonify
+import pickle
+import requests
+import time
+import joblib
 app = Flask(__name__)
+
+access_key ="2MMsC-wCX6LksXMWHDh3tRmgsHNLyL-NmBguNVun9Cs"
+cropURL=f'http://localhost:3000/api/data'
+parameters={
+    'name':'apple',
+}
+cropResponse=requests.get(cropURL,params=parameters)
+cropData=cropResponse.json()
+print(cropData['description'])
+# query_parameters = {
+#     'client_id': access_key,
+#     'orientation': 'landscape', 
+#     'page':1,
+#     'per_page':2,
+#     'order_by':'relevant',
+#     'query': 'mothbeans', 
+# }
+# global image_url
 
 @app.route("/")
 def hello_world():
@@ -10,5 +31,106 @@ def hello_world():
 def form():
     return render_template("form.html", title="Hello")
 
+
+@app.route("/card")
+def card():
+    return render_template("card.html", title="Hello")
+with open('model.pkl', 'rb') as model_file:
+    model = pickle.load(model_file)
+# model=joblib.load('crop_recommendation_model.joblib')
+# @app.route('/predict', methods=['POST'])
+# def predict():
+#     # data = request.get_json()
+#     data = request.values
+#     features =[int(data[i]) for i in data]
+#     prediction = model.predict([features],)
+#     # return jsonify({'prediction' : prediction[0]})
+#     # print(prediction.tolist())
+#     url = f'https://api.unsplash.com/search/photos?client_id=lklkjlkjljkl&count=1&page=1&per_page=2&order_by=relevant&query={prediction[0]}&orientation=portrait'
+#     try:
+#         response = requests.get(url)
+#         response.raise_for_status()  # Check for any request errors
+#         data = response.json()
+#         # time.sleep(3)
+        
+#         # print(data)
+#         photo=data['results'][1]
+#         image_url = ''
+
+#         # Try to get the image URL while it's not available
+#         while image_url is None:
+#             if 'urls' in photo and 'raw' in photo['urls']:
+#                 image_url = photo['urls']['raw']
+#             else:
+#                 print("Image URL not available for this photo. Retrying...")
+#         image_url = data['results'][1]['urls']['raw']
+#         photographer_name =data['results'][1]['user']['name']
+#         print(f"Photographer: {photographer_name}")
+#         print(f"Image URL: {image_url}")
+
+#     except requests.exceptions.RequestException as e:
+#         print(f"Request error: {e}")
+
+#     except KeyError as e:
+#         print("Unexpected API response format")
+
+#     except Exception as e:
+#         print(f"An error occurred: {e}")
+        
+#     return render_template('form.html',pred=prediction[0],path=image_url)
+
+@app.route('/predict', methods=['POST'])
+def predict():
+    # data = request.get_json()
+    data = request.values
+    features = [float(data[i]) for i in data]
+    prediction = model.predict([features,])[0]
+    print(features,prediction)
+    # Replace 'YOUR_ACCESS_KEY' with your Unsplash API access key
+    access_key = '2MMsC-wCX6LksXMWHDh3tRmgsHNLyL-NmBguNVun9Cs'
+
+    # Construct the Unsplash API URL for image search
+    url = f'https://api.unsplash.com/search/photos'
+    
+    query = prediction  # Use the prediction as the query keyword
+
+    # Define query parameters including the 'query' parameter for the search keyword
+    query_parameters = {
+        'client_id': access_key,
+        'query': query,
+        'page':1,
+        'per_page': 2,  # Limit the number of results to 2
+        'orientation': 'landscape',
+        'order_by': 'relevant',  # Sort by relevance
+    }
+    # image_url=''
+    try:
+        image_url=''
+        response = requests.get(url, params=query_parameters)
+        
+        response.raise_for_status()  # Check for any request errors
+        data = response.json()
+        # res=cropResponse
+        # print(res)
+        if 'results' in data and len(data['results']) > 0:
+            photo = data['results'][1]
+            image_url = photo['urls']['raw']
+            photographer_name = photo['user']['name']
+            print(f"Photographer: {photographer_name}")
+            print(f"Image URL: {image_url}")
+        else:
+            print("No photos found for the query.")
+
+    except requests.exceptions.RequestException as e:
+        print(f"Request error: {e}")
+
+    except KeyError as e:
+        print("Unexpected API response format")
+
+    except Exception as e:
+        print(f"An error occurred: {e}")
+    
+    return render_template('card.html', pred=prediction,path=image_url)
+        
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000,debug=True)
+    app.run(debug=True,host='127.0.0.1',port=5500)
