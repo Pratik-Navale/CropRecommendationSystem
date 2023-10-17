@@ -29,12 +29,16 @@ def hello_world():
 
 @app.route("/form")
 def form():
-    return render_template("form.html", title="Hello")
+    return render_template("form.html", title="Form")
+
+@app.route("/form2")
+def form2():
+    return render_template("form2.html", title="Form2")
 
 
 @app.route("/card")
 def card():
-    return render_template("card.html", title="Hello")
+    return render_template("card.html", title="Card")
 with open('model.pkl', 'rb') as model_file:
     model = pickle.load(model_file)
 # model=joblib.load('crop_recommendation_model.joblib')

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -90,80 +90,37 @@
     </header>
 
     <!-- Form -->
-    <div class="py-10">
-      <div class="max-w-4xl p-6 mx-auto bg-white rounded-md shadow-lg">
+    <div class="py-16">
+      <div class="max-w-2xl p-6 mx-auto bg-white rounded-md shadow-lg">
         <h2 class="text-lg font-semibold text-gray-700 capitalize">
           Enter the valid details
         </h2>
 
-        <form id="form" action="/predict" method="POST">
-          <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-3">
+        <form>
+          <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-1">
             <div>
-              <label class="text-gray-700" for="N">Nitrogen</label>
+              <label class="text-gray-700" for="username">Date</label>
               <input
-                name="N"
-                id="N"
+                id="nitrogen"
+                type="date"
+                class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border-2 border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring"
+              />
+            </div>
+
+            <div>
+              <label class="text-gray-700" for="username">Soil type</label>
+              <input
+                id="soil"
                 type="text"
                 class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border-2 border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring"
               />
             </div>
 
             <div>
-              <label class="text-gray-700" for="P">Phosphorus</label>
+              <label class="text-gray-700" for="username">Temperature °C</label>
               <input
-                name="P"
-                id="P"
-                type="text"
-                class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border-2 border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring"
-              />
-            </div>
-
-            <div>
-              <label class="text-gray-700" for="K">Postassium</label>
-              <input
-                name="K"
-                id="K"
-                type="text"
-                class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border-2 border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring"
-              />
-            </div>
-
-            <div>
-              <label class="text-gray-700" for="temperature">Temperature</label>
-              <input
-                name="temperature"
-                id="temperature"
-                type="text"
-                class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border-2 border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring"
-              />
-            </div>
-
-            <div>
-              <label class="text-gray-700" for="humidity">Humidity</label>
-              <input
-                name="humidity"
-                id="humidity"
-                type="text"
-                class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border-2 border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring"
-              />
-            </div>
-
-            <div>
-              <label class="text-gray-700" for="ph">PH</label>
-              <input
-                name="ph"
-                id="ph"
-                type="text"
-                class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border-2 border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring"
-              />
-            </div>
-
-            <div>
-              <label class="text-gray-700" for="Rainfall">rainfall</label>
-              <input
-                name="rainfall"
-                id="rainfall"
-                type="text"
+                id="temp"
+                type="number"
                 class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border-2 border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring"
               />
             </div>
@@ -179,6 +136,7 @@
         </form>
       </div>
     </div>
+
     <!-- Footer -->
     <footer class="bg-white">
       <div
@@ -245,7 +203,5 @@
         </div>
       </div>
     </footer>
-    <script src="{{ url_for('static', filename='javascript/send.js') }}"></script>
-    <script src="{{ url_for('static', filename='javascript/index.js') }}"></script>
   </body>
 </html>
