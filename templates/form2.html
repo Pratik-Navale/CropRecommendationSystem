@@ -7,14 +7,15 @@
       href="{{url_for('static',filename='css/output.css')}}"
       rel="stylesheet"
     />
-    <title>Home</title>
+    <title>Home 2</title>
   </head>
-  <body>
+  <body class="bg-gray-300">
+    <!-- Navbar -->
     <header class="bg-white">
       <nav x-data="{ isOpen: false }" class="px-6 py-4 shadow">
         <div class="lg:items-center lg:justify-between lg:flex">
           <div class="flex items-center justify-between">
-            <a href="#" class="mx-auto">
+            <a href="/" class="mx-auto">
               <h1 class="text-3xl font-bold text-blue-600">Crop Recommender</h1>
             </a>
 
@@ -69,7 +70,7 @@
             class="absolute inset-x-0 z-20 w-full px-6 py-4 transition-all duration-300 ease-in-out bg-white shadow-md lg:bg-transparent lg:shadow-none lg:mt-0 lg:p-0 lg:top-0 lg:relative lg:w-auto lg:opacity-100 lg:translate-x-0 lg:flex lg:items-center"
           >
             <a
-              href="#"
+              href="/"
               class="block px-3 py-2 text-gray-600 font-semibold rounded-lg hover:bg-gray-100 lg:mx-2"
               >Home</a
             >
@@ -83,61 +84,60 @@
               class="block px-3 py-2 text-gray-600 font-semibold rounded-lg hover:bg-gray-100 lg:mx-2"
               >Contact</a
             >
-            <a
-            href="/form2"
-             class="px-6 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-lg hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
-              Primary
-            </a>
           </div>
         </div>
       </nav>
-
-      <div class="lg:flex">
-        <div
-          class="flex items-center justify-center w-full px-6 py-8 lg:h-[32rem] lg:w-1/2"
-        >
-          <div class="max-w-xl">
-            <h2 class="text-3xl font-semibold text-gray-800 lg:text-4xl">
-              Get Personalized
-              <span class="text-blue-600">Crop Recommendations</span>
-            </h2>
-
-            <p class="mt-4 text-sm text-gray-500 lg:text-base text-justify">
-              Revolutionize your agricultural practices with our
-              state-of-the-art crop recommendation system. We analyze soil
-              conditions, climate data, and historical crop performance to
-              provide personalized recommendations for optimal yields and
-              sustainability.
-            </p>
-
-            <div class="flex flex-col mt-6 space-y-3 lg:space-y-0 lg:flex-row">
-              <a
-                href="/form"
-                class="block px-5 py-2 text-sm font-medium tracking-wider text-center text-white transition-colors duration-300 transform bg-gray-900 rounded-md hover:bg-gray-700"
-                >Get Recommendations</a
-              >
-              <a
-                href="#"
-                class="block px-5 py-2 text-sm font-medium tracking-wider text-center text-gray-700 transition-colors duration-300 transform bg-gray-200 rounded-md lg:mx-4 hover:bg-gray-300"
-                >Learn More</a
-              >
-            </div>
-          </div>
-        </div>
-
-        <div class="w-full h-64 lg:w-1/2 lg:h-auto">
-          <div
-            class="w-full h-full bg-cover"
-            style="
-              background-image: url(https://images.unsplash.com/photo-1529313780224-1a12b68bed16?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Y3JvcHN8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=600&q=60);
-            "
-          >
-            <div class="w-full h-full"></div>
-          </div>
-        </div>
-      </div>
     </header>
 
+    <!-- Form -->
+    <div class="py-16">
+      <div class="max-w-2xl p-6 mx-auto bg-white rounded-md shadow-lg">
+        <h2 class="text-lg font-semibold text-gray-700 capitalize">
+          Enter the valid details
+        </h2>
+
+        <form>
+          <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-1">
+            <div>
+              <label class="text-gray-700" for="username">Date</label>
+              <input
+                id="nitrogen"
+                type="date"
+                class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border-2 border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring"
+              />
+            </div>
+
+            <div>
+              <label class="text-gray-700" for="username">Soil type</label>
+              <input
+                id="soil"
+                type="text"
+                class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border-2 border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring"
+              />
+            </div>
+
+            <div>
+              <label class="text-gray-700" for="username">Temperature °C</label>
+              <input
+                id="temp"
+                type="number"
+                class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border-2 border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring"
+              />
+            </div>
+          </div>
+
+          <div class="flex justify-end mt-6">
+            <button
+              class="px-8 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-blue-700 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
+            >
+              Get Recommendation
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Footer -->
     <footer class="bg-white">
       <div
         class="container flex flex-col items-center justify-between p-6 mx-auto space-y-4 sm:space-y-0 sm:flex-row"
@@ -145,7 +145,6 @@
         <a href="#">
           <h1 class="text-xl font-bold text-blue-600">Crop Recommender</h1>
         </a>
-
         <p class="text-sm text-gray-600">
           © Copyright 2021. All Rights Reserved.
         </p>
