@@ -6,13 +6,7 @@ import joblib
 app = Flask(__name__)
 
 access_key ="2MMsC-wCX6LksXMWHDh3tRmgsHNLyL-NmBguNVun9Cs"
-cropURL=f'http://localhost:3000/api/data'
-parameters={
-    'name':'apple',
-}
-cropResponse=requests.get(cropURL,params=parameters)
-cropData=cropResponse.json()
-print(cropData['description'])
+
 # query_parameters = {
 #     'client_id': access_key,
 #     'orientation': 'landscape', 
@@ -91,13 +85,16 @@ def predict():
 
     # Construct the Unsplash API URL for image search
     url = f'https://api.unsplash.com/search/photos'
-    
-    query = prediction  # Use the prediction as the query keyword
+    cropURL=f'http://localhost:3000/api/data?name={prediction}'
+    cropResponse=requests.get(cropURL)
+    cropData=cropResponse.json()
+    description=cropData['description']
+    # query = prediction  # Use the prediction as the query keyword
 
     # Define query parameters including the 'query' parameter for the search keyword
     query_parameters = {
         'client_id': access_key,
-        'query': query,
+        'query': prediction,
         'page':1,
         'per_page': 2,  # Limit the number of results to 2
         'orientation': 'landscape',
@@ -105,7 +102,7 @@ def predict():
     }
     # image_url=''
     try:
-        image_url=''
+        # image_url=''
         response = requests.get(url, params=query_parameters)
         
         response.raise_for_status()  # Check for any request errors
@@ -130,7 +127,7 @@ def predict():
     except Exception as e:
         print(f"An error occurred: {e}")
     
-    return render_template('card.html', pred=prediction,path=image_url)
+    return render_template('card.html', pred=prediction,path=image_url,description=description)
         
 if __name__ == '__main__':
     app.run(debug=True,host='127.0.0.1',port=5500)
