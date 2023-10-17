@@ -90,7 +90,7 @@ const crop = {
     },
     "coconut": {
         "url": "https://images.unsplash.com/photo-1553787434-dd9eb4ea4d0b?auto=format&fit=crop&q=80&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&w=1935",
-        "description": "Coconut, a versatile fruit, offers its meat, water, and oil for a variety of culinary and industrial purposes. It is a staple in tropical regions and is valued for its contributions to both traditional and modern cuisines."
+        "description": "Coconut trees yield abundant coconuts, offering a reliable income source for farmers. These coconuts are versatile, used in products like coconut oil and coconut water, enhancing financial benefits. Coconut farming is sustainable, supporting biodiversity, but it also poses challenges, such as susceptibility to pests and market fluctuations, that need effective management for optimal financial outcomes."
     },
     "cotton": {
         "url": "https://images.unsplash.com/photo-1633527992904-53f86f81a23a?auto=format&fit=crop&q=80&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&w=1770",

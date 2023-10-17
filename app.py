@@ -33,9 +33,9 @@ def form2():
 @app.route("/card")
 def card():
     return render_template("card.html", title="Card")
-with open('model.pkl', 'rb') as model_file:
-    model = pickle.load(model_file)
-# model=joblib.load('crop_recommendation_model.joblib')
+# with open('Tuned_model.pkl', 'rb') as model_file:
+#     model = pickle.load(model_file)
+model=joblib.load('Tuned_model.pkl')
 # @app.route('/predict', methods=['POST'])
 # def predict():
 #     # data = request.get_json()
@@ -75,15 +75,24 @@ with open('model.pkl', 'rb') as model_file:
 #     except Exception as e:
 #         print(f"An error occurred: {e}")
         
-#     return render_template('form.html',pred=prediction[0],path=image_url)
+    # return render_template('form.html',pred=prediction[0],path=image_url)
 
 @app.route('/predict', methods=['POST'])
 def predict():
     # data = request.get_json()
     data = request.values
-    features = [float(data[i]) for i in data]
+    print(data)
+    N=float(data['N'])
+    P=float(data['P'])
+    K=float(data['K'])
+    temperature=float(data['temperature'])
+    humidity=float(data['humidity'])
+    ph=float(data['ph'])
+    rainfall=float(data['rainfall'])
+    features =  [N,P,K,temperature,humidity,ph,rainfall]
+    print(features)
     prediction = model.predict([features,])[0]
-    print(features,prediction)
+    # print(features,prediction)
     # Replace 'YOUR_ACCESS_KEY' with your Unsplash API access key
     access_key = '2MMsC-wCX6LksXMWHDh3tRmgsHNLyL-NmBguNVun9Cs'
 
@@ -133,6 +142,7 @@ def predict():
         print(f"An error occurred: {e}")
     
     return render_template('card.html', pred=prediction,path=image_url,description=description)
+
         
 if __name__ == '__main__':
     app.run(debug=True,host='127.0.0.1',port=5500)
