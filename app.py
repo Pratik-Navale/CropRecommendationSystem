@@ -93,6 +93,7 @@ def predict():
     cropResponse=requests.get(cropURL)
     cropData=cropResponse.json()
     description=cropData['description']
+    image_url=cropData['url']
     # query = prediction  # Use the prediction as the query keyword
 
     # Define query parameters including the 'query' parameter for the search keyword
@@ -115,7 +116,7 @@ def predict():
         # print(res)
         if 'results' in data and len(data['results']) > 0:
             photo = data['results'][1]
-            image_url = photo['urls']['raw']
+            # image_url = photo['urls']['raw']
             photographer_name = photo['user']['name']
             print(f"Photographer: {photographer_name}")
             print(f"Image URL: {image_url}")
