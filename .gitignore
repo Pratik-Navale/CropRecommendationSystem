@@ -1,2 +1,7 @@
 __pycache__/
-node_modules
+node_modules/
+server.js
+Tuned_model.joblib
+model.pkl
+crop_recommendation_model.joblib
+static/javascript/
