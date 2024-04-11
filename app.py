@@ -8,4 +8,8 @@ def hello_world():
 
 @app.route("/form")
 def form():
-    return render_template("form.html", title="Hello")
+    return render_template("form.html", title="Form")
+
+@app.route("/form2")
+def form2():
+    return render_template("form2.html", title="Form2")
