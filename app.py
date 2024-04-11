@@ -14,8 +14,8 @@ def form():
 @app.route("/form2")
 def form2():
     return render_template("form2.html", title="Form2")
-
-
+  
+  
 @app.route("/card")
 def card():
     return render_template("card.html", title="Card")
