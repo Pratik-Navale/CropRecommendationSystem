@@ -7,7 +7,12 @@
       href="{{url_for('static',filename='css/output.css')}}"
       rel="stylesheet"
     />
-    <title>Home</title>
+    <link
+      rel="icon"
+      type="image/png"
+      href="{{ url_for('static', filename='Images/icon.png') }}"
+    />
+    <title>CropSage</title>
   </head>
   <body>
     <header class="bg-white">
@@ -84,8 +89,9 @@
               >Contact</a
             >
             <a
-            href="/form2"
-             class="px-6 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-lg hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
+              href="/form2"
+              class="px-6 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-lg hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80"
+            >
               Primary
             </a>
           </div>
